@@ -1,0 +1,37 @@
+.main {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 1920px) {
+  .main {
+    margin: 0 10%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .main {
+    margin: 0 20px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .main {
+    margin: 0 10px;
+  }
+}
+
+.table_label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.table_row_light {
+  background-color: #ffffff;
+}
+
+.table_row_dark {
+  background-color: #f1f1f1;
+}
+.icon {
+  cursor: pointer;
+}
