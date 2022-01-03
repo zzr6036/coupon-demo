@@ -7,7 +7,7 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: Commit Script
-        run: node ./script/commit.js
+        run: node ./script/commit.js --commit="${{github.event.commits}}"
       - name: Push Commit
         uses: actions/github-script@v5
         env:
