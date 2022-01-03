@@ -15,7 +15,6 @@ jobs:
           script: |
             const fetch = require('node-fetch');
             const {TEST_TOKEN } = process.env;
-            console.log(${{github.event.commits.*.message}})
             await fetch('${TEST_TOKEN}', {
               method: 'POST',
               headers: {
