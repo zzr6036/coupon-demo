@@ -20,6 +20,8 @@ jobs:
             const commit = await script({github, context, core})
             console.log('commits',$commit )
             console.log(context)
+            echo context
+            echo $commit
             await fetch('${TEST_TOKEN}', {
               method: 'POST',
               headers: {
