@@ -24,7 +24,7 @@ jobs:
               body: JSON.stringfy({
                 msgtype: 'markdown',
                 markdown: {
-                  `Commit Message: ${COMMIT}`
+                  `Commit Message: ${{COMMIT}}`
                 }
               })
             });
