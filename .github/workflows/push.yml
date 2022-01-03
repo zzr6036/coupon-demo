@@ -14,7 +14,8 @@ jobs:
         with:
           script: |
             const fetch = require('node-fetch');
-            await fetch('${{TEST_TOKEN}}', {
+            const {TEST_TOKEN } = process.env;
+            await fetch('${TEST_TOKEN}', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
