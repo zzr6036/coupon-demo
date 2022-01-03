@@ -2,15 +2,16 @@ name: Push Action
 
 on: push
 
-
 jobs:
   Build:
     runs-on: [ubuntu-latest]
     steps:
+      - name: Commit Script
+        run: node ./script/commit.js
       - name: Push Commit
         uses: actions/github-script@v5
-        env: 
-          TEST_TOKEN: 'test'
+        env:
+          TEST_TOKEN: "test"
         with:
           script: |
             const fetch = require('node-fetch');
