@@ -8,8 +8,7 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: Push Commit
-      - uses: actions/github-script@v5
-      - uses: actions/checkout@v2
+        uses: actions/github-script@v5
         env: 
           TEST_TOKEN: 'test'
           SHA: '${{env.parentSHA}}'
