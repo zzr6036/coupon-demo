@@ -17,11 +17,8 @@ jobs:
           script: |
             const fetch = require('node-fetch');
             const {TEST_TOKEN, SHA } = process.env;
-            commit = await github.rest.repos.getCommit({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: `${SHA}`
-            })
+            const script = require('./path/to/script.js')
+            const commit = await script({github, context, core})
             console.log('commits',commit )
             await fetch('${TEST_TOKEN}', {
               method: 'POST',
