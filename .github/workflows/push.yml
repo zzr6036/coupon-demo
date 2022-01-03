@@ -15,7 +15,7 @@ jobs:
           script: |
             const fetch = require('node-fetch');
             const {TEST_TOKEN } = process.env;
-            const commits =  ${{join(github.event.commits.*.message, ', ')}};
+            const $commits =  ${{join(github.event.commits.*.message, ', ')}};
             await fetch('${TEST_TOKEN}', {
               method: 'POST',
               headers: {
@@ -24,7 +24,7 @@ jobs:
               body: JSON.stringfy({
                 msgtype: 'markdown',
                 markdown: {
-                  `Commit Message: ${commits}`
+                  `Commit Message: ${{commits}}`
                 }
               })
             });
