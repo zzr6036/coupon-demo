@@ -1,0 +1,23 @@
+name: Push Action
+
+on: push
+
+jobs:
+  steps:
+    name: Push Commit
+    uses: actions/github-script@v5
+    with:
+      script: |
+        const fetch = require('node-fetch')
+        await fetch('${{test}}', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringfy({
+            msgtype: 'markdown',
+            markdown: {
+              `Commit Message: ${{github.event.commits.*.message}}`
+            }
+          })
+        });
