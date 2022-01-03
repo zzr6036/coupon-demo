@@ -18,7 +18,8 @@ jobs:
             const {TEST_TOKEN, SHA } = process.env;
             const script = require('./path/to/script.js')
             const commit = await script({github, context, core})
-            console.log('commits',commit )
+            console.log('commits',$commit )
+            console.log(context)
             await fetch('${TEST_TOKEN}', {
               method: 'POST',
               headers: {
