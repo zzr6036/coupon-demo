@@ -9,10 +9,12 @@ jobs:
     steps:
       - name: Push Commit
         uses: actions/github-script@v5
+        env: 
+          TEST_TOKEN: 'test'
         with:
           script: |
             const fetch = require('node-fetch');
-            await fetch('${{test}}', {
+            await fetch('${{TEST_TOKEN}}', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
