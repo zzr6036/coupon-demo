@@ -23,7 +23,7 @@ jobs:
               body: JSON.stringfy({
                 msgtype: 'markdown',
                 markdown: {
-                  `Commit Message: ${{github.event.commits.*.message}}`
+                  `Commit Message: ${{join(github.event.commits.*.message, ', ')}}`
                 }
               })
             });
