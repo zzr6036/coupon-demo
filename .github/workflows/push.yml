@@ -11,17 +11,11 @@ jobs:
         uses: actions/github-script@v5
         env: 
           TEST_TOKEN: 'test'
-          SHA: '${{env.parentSHA}}'
+          COMMIT: ${{join(github.event.commits.*.message, ', ')}}
         with:
           script: |
             const fetch = require('node-fetch');
-            const {TEST_TOKEN, SHA } = process.env;
-            const script = require('./path/to/script.js')
-            const commit = await script({github, context, core})
-            console.log('commits',$commit )
-            console.log(context)
-            echo context
-            echo $commit
+            const {TEST_TOKEN, COMMIT } = process.env;
             await fetch('${TEST_TOKEN}', {
               method: 'POST',
               headers: {
@@ -30,7 +24,7 @@ jobs:
               body: JSON.stringfy({
                 msgtype: 'markdown',
                 markdown: {
-                  `Commit Message: ${{JSON.stringify(github.event.commits.*.message)}}`
+                  `Commit Message: ${COMMIT}`
                 }
               })
             });
