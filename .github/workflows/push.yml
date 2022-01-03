@@ -7,6 +7,10 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js 15
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15
       - name: Commit Script
         run: node ./script/commit.js --commit="${{github.event.commits}}"
         - name: Push Commit
