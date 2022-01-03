@@ -8,13 +8,21 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: Push Commit
-        uses: actions/github-script@v5
+      - uses: actions/github-script@v5
+      - uses: actions/checkout@v2
         env: 
           TEST_TOKEN: 'test'
+          SHA: '${{env.parentSHA}}'
         with:
           script: |
             const fetch = require('node-fetch');
-            const {TEST_TOKEN } = process.env;
+            const {TEST_TOKEN, SHA } = process.env;
+            commit = await github.rest.repos.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `${SHA}`
+            })
+            console.log('commits',commit )
             await fetch('${TEST_TOKEN}', {
               method: 'POST',
               headers: {
