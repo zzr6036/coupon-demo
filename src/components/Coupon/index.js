@@ -224,6 +224,7 @@ const Coupon = props => {
 
     const renderTable = () => {
     console.log('1')
+    console.log('2')
         if (coupons && coupons.length > 0) {
             return (
                 <Table
