@@ -223,7 +223,7 @@ const Coupon = props => {
     }
 
     const renderTable = () => {
-        console.log('11')
+        console.log('1')
         console.log('2')
         console.log('3')
         if (coupons && coupons.length > 0) {
