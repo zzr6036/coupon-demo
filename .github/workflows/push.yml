@@ -11,7 +11,7 @@ jobs:
         uses: actions/github-script@v5
         env: 
           TEST_TOKEN: 'test'
-          COMMIT: ${{join(github.event.commits.*.message, ', ')}}
+          COMMIT: ${{github.event.commits.*.message}}
         with:
           script: |
             const fetch = require('node-fetch');
@@ -24,7 +24,7 @@ jobs:
               body: JSON.stringfy({
                 msgtype: 'markdown',
                 markdown: {
-                  `Commit Message: ${COMMIT}`
+                  `Commit Message: ${join(COMMIT, '\n')}`
                 }
               })
             });
