@@ -12,7 +12,6 @@ jobs:
         with:
           node-version: 15
       - name: Commit Script
-        env:
         run: node ./script/commit.js ${{github.event.after}}
       - name: Push Commit
         uses: actions/github-script@v5
