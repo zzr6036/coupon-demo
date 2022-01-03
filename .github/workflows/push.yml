@@ -13,8 +13,7 @@ jobs:
           node-version: 15
       - name: Commit Script
         env:
-          SHA: ${{env.parentSHA}}
-        run: node ./script/commit.js ${SHA}
+        run: node ./script/commit.js ${github.event.after}
       - name: Push Commit
         uses: actions/github-script@v5
         env:
