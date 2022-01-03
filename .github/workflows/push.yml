@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: 15
       - name: Commit Script
-        run: node ./script/commit.js ${{join(github.event.commits.*.message)}}
+        run: node ./script/commit.js ${{join(github.event.commits.*.message, '\n')}}
       - name: Push Commit
         uses: actions/github-script@v5
         env:
