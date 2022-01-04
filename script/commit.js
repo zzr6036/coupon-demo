@@ -1,4 +1,5 @@
-import { default as fetch } from 'node-fetch'
+// const { default: fetch } = require('node-fetch')
+import fetch from 'node-fetch';
 
 const commits = process.argv.slice(2)
 console.log('argu====>', process.argv)
@@ -8,7 +9,7 @@ async function commit() {
     console.log('type of commits1====>', typeof commits)
     const result1 = await fetch('https://github.com/zzr6036/coupon-demo/commits')
     console.log('result 1===>', result1)
-    // commit2()
+    commit2()
 }
 
 async function commit2() {
