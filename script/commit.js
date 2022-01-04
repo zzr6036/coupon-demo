@@ -11,7 +11,7 @@ async function commit() {
     commit2()
 }
 
-const commit2 = () => {
+async const commit2 = () => {
     const fetch = new fetch({ auth: `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` });
     const result2 = await fetch('https://github.com/zzr6036/coupon-demo/commits')
     console.log('result2===>', result2)
