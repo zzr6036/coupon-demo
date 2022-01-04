@@ -1,5 +1,5 @@
-import { default as fetch } from 'node-fetch'
-// const { default: fetch } = require('node-fetch')
+// import { default as fetch } from 'node-fetch'
+const { default: fetch } = require('node-fetch')
 
 const commits = process.argv.slice(2)
 console.log('argu====>', process.argv)
