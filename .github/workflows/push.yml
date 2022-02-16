@@ -54,7 +54,7 @@ jobs:
                 msgtype: 'markdown',
                 markdown: {
                   `Commit Message: ${{ github.event.head_commit.message }} \n
-                    Please visit [Github](${{github.event.repository.event_url}})
+                    Please visit [Github](${{github.event.repository.events_url}})
                   `
                 }
               })
