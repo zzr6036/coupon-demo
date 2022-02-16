@@ -53,7 +53,7 @@ jobs:
               body: JSON.stringfy({
                 msgtype: 'markdown',
                 markdown: {
-                  `Commit Message: ${{ github.event.head_commit.message.replace(/\n/g, ' ')}} \n
+                  `Commit Message: ${{ github.event.head_commit.message }} \n
                     Please visit [Github](https://github.com/zzr6036/coupon-demo/actions/runs/${https://github.com/zzr6036/coupon-demo/actions/runs/${{github.event.repository.id}}})
                   `
                 }
