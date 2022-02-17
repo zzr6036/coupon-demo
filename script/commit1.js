@@ -4,9 +4,11 @@
 // const commits = process.argv.slice(2)
 
 // console.log('argu====>', process)
+const jiraTicketRegex = /((SANFRANSOK|MH)-\d+)/
 function commit() {
     const headCommit = String(process.argv.slice(2))
     const commitList = typeof headCommit === 'string' ? headCommit.split(/\r?\n/) : []
+    const { title, message } = getTicketInfo(commitList)
     console.log('process.argv.slice===>', process.argv.slice(2))
     console.log(' process.argv ====>', process.argv)
     console.log('headCommit==>', headCommit)
