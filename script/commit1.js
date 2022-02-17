@@ -5,9 +5,12 @@
 
 // console.log('argu====>', process)
 function commit() {
-    const { headCommit, commits } = process.argv.slice(2)
+    const headCommit = process.argv.slice(2)
+    const commitList = headCommit.split(/(\n\r\n)+/)
     console.log('process.argv.slice===>', process.argv.slice(2))
     console.log(' process.argv ====>', process.argv)
+    console.log('headCommit==>', headCommit)
+    console.log('commitList==>', commitList)
     // console.log('headCommit ====>', headCommit)
     // console.log('commits ====>', commits)
     // const list = allCommits.split('|| ') || []
