@@ -6,14 +6,14 @@ console.log('argu====>', process)
 function commit(allCommits) {
     console.log('todo')
     console.log('allCommits====>', allCommits)
-    const list = allCommits.split('|| ') || []
-    console.log('list====>', list)
+    // const list = allCommits.split('|| ') || []
+    // console.log('list====>', list)
     // console.log('allCommits json====>', JSON.parse(allCommits))
-    const commitList = []
-    for (const commit of list) {
-        console.log('commit===>', commit)
-        console.log('commit message===>', commit.message)
-    }
+    // const commitList = []
+    // for (const commit of list) {
+    //     console.log('commit===>', commit)
+    //     console.log('commit message===>', commit.message)
+    // }
     // const result1 = await fetch('https://github.com/zzr6036/coupon-demo/commits')
     // console.log('result 1===>', result1)
     // commit2()
