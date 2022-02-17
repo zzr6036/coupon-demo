@@ -5,8 +5,8 @@
 
 // console.log('argu====>', process)
 function commit() {
-    const headCommit = process.argv.slice(2)
-    const commitList = headCommit.split(/(\n\r\n)+/)
+    const headCommit = String(process.argv.slice(2))
+    const commitList = typeof headCommit === 'string' ? headCommit.split(/\r?\n/) : []
     console.log('process.argv.slice===>', process.argv.slice(2))
     console.log(' process.argv ====>', process.argv)
     console.log('headCommit==>', headCommit)
