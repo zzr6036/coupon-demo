@@ -4,9 +4,11 @@
 // const commits = process.argv.slice(2)
 
 // console.log('argu====>', process)
+const jiraTicketRegex = /((SANFRANSOK|MH)-\d+)/
 function commit() {
     const headCommit = String(process.argv.slice(2))
     const commitList = typeof headCommit === 'string' ? headCommit.split(/\r?\n/) : []
+    const { title, message } = getTicketInfo(commitList)
     console.log('process.argv.slice===>', process.argv.slice(2))
     console.log(' process.argv ====>', process.argv)
     console.log('headCommit==>', headCommit)
@@ -24,6 +26,16 @@ function commit() {
     // const result1 = await fetch('https://github.com/zzr6036/coupon-demo/commits')
     // console.log('result 1===>', result1)
     // commit2()
+}
+
+function getTicketInfo(commitList) {
+    let messageObj = commitList.reduce((acc, item) => {
+        if (jiraTicketRegex.match(item)) {
+            const title = jiraTicketRegex.exec(item)
+            return { ...acc, [title]: [...acc([item] || [])] }
+        }
+    })
+    console.log('messageObj===>', messageObj)
 }
 
 // async function commit2() {
