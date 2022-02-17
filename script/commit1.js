@@ -24,7 +24,7 @@ async function commit() {
 //     console.log('result2===>', result2)
 // }
 
-commit()
+commit(commits)
 
 
 // const octokit = new Octokit({ auth: `personal-access-token123` });
