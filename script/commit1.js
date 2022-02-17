@@ -6,9 +6,10 @@
 // console.log('argu====>', process)
 function commit() {
     const { headCommit, commits } = process.argv.slice(2)
-    console.log('process.argv===>', process.argv.slice(2))
-    console.log('headCommit ====>', headCommit)
-    console.log('commits ====>', commits)
+    console.log('process.argv.slice===>', process.argv.slice(2))
+    console.log(' process.argv ====>', process.argv)
+    // console.log('headCommit ====>', headCommit)
+    // console.log('commits ====>', commits)
     // const list = allCommits.split('|| ') || []
     // console.log('list====>', list)
     // console.log('allCommits json====>', JSON.parse(allCommits))
