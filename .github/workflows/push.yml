@@ -14,7 +14,7 @@ jobs:
       # - run: npm install node-fetch@^3.1.0
       - name: Commit Script
         run: |
-          result=$(node ./script/commit1.js ${{github.event.commits}})
+          result=$(node ./script/commit1.js ${{ toJSON(github.event.commits) }})
           echo "::set-output name=result::$result"
         # run: node ./script/commit.js ${{github.event.commits}}
       # - name: Commit Script
@@ -88,3 +88,4 @@ jobs:
 #               })
 #             });
 # Please visit [Github](https://github.com/zzr6036/coupon-demo/actions/runs/${{github.event.repository.pushed_at}})
+# result=$(node ./script/commit1.js ${{join(github.event.commits.*.message, ' || ')}})
