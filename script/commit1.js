@@ -10,7 +10,7 @@ async function commit() {
     const commitList = []
     if (commits && commits.length > 0) {
         commits.forEach(commit => {
-            console.log('commit===>', commit)
+            console.log('commit1===>', commit)
         })
     }
     // const result1 = await fetch('https://github.com/zzr6036/coupon-demo/commits')
