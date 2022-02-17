@@ -3,7 +3,7 @@
 
 const commits = process.argv.slice(2)
 console.log('argu====>', process.argv)
-async function commit(allCommits) {
+function commit(allCommits) {
     console.log('todo')
     console.log('allCommits====>', allCommits)
     const commitList = []
