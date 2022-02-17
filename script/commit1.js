@@ -13,13 +13,15 @@ function commit() {
 
 function getTicketInfo(commitList, headCommit) {
     const titleResult = jiraTicketRegex.exec(headCommit)
+    const jiraTicket = titleResult[0]
     const isSkipDanger = headCommit.toLowerCase().includes('#skip-danger')
     let messageObj = commitList.reduce((acc, item) => {
-        if (jiraTicketRegex.exec(item)) {
-            return { ...acc, [jiraTicketRegex.exec(item)[0]]: [...([item] || [])] }
+        if (item.includes(jiraTicket)) {
+            return { ...acc, [jiraTicket]: [...([item] || [])] }
         }
     }, {})
-    // console.log('titleResult===>', titleResult)
+    console.log('jiraTicket===>', jiraTicket)
+    console.log('isSkipDanger===>', isSkipDanger)
     console.log('messageObj===>', messageObj)
     return {
         title: '',
