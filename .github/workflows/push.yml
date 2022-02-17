@@ -18,7 +18,7 @@ jobs:
       # - name: Commit Script
       #   run: node ./script/commit1.js ${{ toJSON(github.event)}}
       - name: Commit Script
-        run: node ./script/commit1.js "${{github.event.head_commit.message}}" "${{join(github.event.commits.*.message, '\n')}}"
+        run: node ./script/commit1.js headCommit="${{github.event.head_commit.message}}" messages="${{join(github.event.commits.*.message, '\n')}}"
       # run: node ./script/commit.js ${{github.event.commits}}
       # - name: Commit Script
       #   run: node ./script/commit.js ${{github.event.repository.commits_url}}
