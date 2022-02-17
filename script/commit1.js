@@ -1,42 +1,30 @@
-// import { default as fetch } from 'node-fetch'
-// const { default: fetch } = require('node-fetch')
 
-// const commits = process.argv.slice(2)
-
-// console.log('argu====>', process)
+const headCommit = String(process.argv.slice(2))
 const jiraTicketRegex = /((SANFRANSOK|MH)-\d+)/
+
 function commit() {
-    const headCommit = String(process.argv.slice(2))
     const commitList = typeof headCommit === 'string' ? headCommit.split(/\r?\n/) : []
-    const { title, message } = getTicketInfo(commitList)
+    const { title, message } = getTicketInfo(commitList, headCommit)
     console.log('process.argv.slice===>', process.argv.slice(2))
     console.log(' process.argv ====>', process.argv)
     console.log('headCommit==>', headCommit)
     console.log('commitList==>', commitList)
-    // console.log('headCommit ====>', headCommit)
-    // console.log('commits ====>', commits)
-    // const list = allCommits.split('|| ') || []
-    // console.log('list====>', list)
-    // console.log('allCommits json====>', JSON.parse(allCommits))
-    // const commitList = []
-    // for (const commit of list) {
-    //     console.log('commit===>', commit)
-    //     console.log('commit message===>', commit.message)
-    // }
-    // const result1 = await fetch('https://github.com/zzr6036/coupon-demo/commits')
-    // console.log('result 1===>', result1)
-    // commit2()
 }
 
-function getTicketInfo(commitList) {
-    const titleResult = jiraTicketRegex.exec(item)
+function getTicketInfo(commitList, headCommit) {
+    const titleResult = jiraTicketRegex.exec(headCommit)
+    const isSkipDanger = headCommit.toLowerCase().includes('#skip-danger')
     let messageObj = commitList.reduce((acc, item) => {
         if (jiraTicketRegex.exec(item)) {
-            return { ...acc, [item]: [...acc([item] || [])] }
+            return { ...acc, [jiraTicketRegex.exec(item)[0]]: [...([item] || [])] }
         }
-    })
-    console.log('titleResult===>', titleResult)
+    }, {})
+    // console.log('titleResult===>', titleResult)
     console.log('messageObj===>', messageObj)
+    return {
+        title: '',
+        message: ''
+    }
 }
 
 // async function commit2() {
@@ -54,3 +42,6 @@ commit()
 //   org: "octokit",
 //   type: "private",
 // });
+
+// node commit1.js "[MH-111] tHIS IS THE COMMIT (#26)" 
+// node commit1.js "[MH-111] tHIS IS THE COMMIT (#26) \n*[MH-111] test" 
