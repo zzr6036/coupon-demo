@@ -20,7 +20,6 @@ jobs:
       - name: Commit Script
         run: |
           result=$(node ./script/commit1.js ${{toJSON(github.event)}})
-          echo '::set-output name=result::{result}'
       # run: node ./script/commit.js ${{github.event.commits}}
       # - name: Commit Script
       #   run: node ./script/commit.js ${{github.event.repository.commits_url}}
