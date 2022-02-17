@@ -6,9 +6,11 @@ console.log('argu====>', process)
 function commit(allCommits) {
     console.log('todo')
     console.log('allCommits====>', allCommits)
-    console.log('allCommits json====>', JSON.parse(allCommits))
+    const list = allCommits.split(' || ')
+    console.log('list====>', list)
+    // console.log('allCommits json====>', JSON.parse(allCommits))
     const commitList = []
-    for (const commit of allCommits) {
+    for (const commit of list) {
         console.log('commit===>', commit)
         console.log('commit message===>', commit.message)
     }
