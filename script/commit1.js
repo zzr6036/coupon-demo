@@ -1,11 +1,14 @@
 // import { default as fetch } from 'node-fetch'
 // const { default: fetch } = require('node-fetch')
 
-const commits = process.argv.slice(2)
-console.log('argu====>', process)
-function commit(allCommits) {
-    console.log('todo')
-    console.log('allCommits1 ====>', allCommits)
+// const commits = process.argv.slice(2)
+
+// console.log('argu====>', process)
+function commit() {
+    const { headCommit, commits } = process.argv.slice(2)
+    console.log('process.argv===>', process.argv.slice(2))
+    console.log('headCommit ====>', headCommit)
+    console.log('commits ====>', commits)
     // const list = allCommits.split('|| ') || []
     // console.log('list====>', list)
     // console.log('allCommits json====>', JSON.parse(allCommits))
@@ -25,7 +28,7 @@ function commit(allCommits) {
 //     console.log('result2===>', result2)
 // }
 
-commit(commits)
+commit()
 
 
 // const octokit = new Octokit({ auth: `personal-access-token123` });
