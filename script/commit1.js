@@ -29,12 +29,13 @@ function commit() {
 }
 
 function getTicketInfo(commitList) {
+    const titleResult = jiraTicketRegex.exec(item)
     let messageObj = commitList.reduce((acc, item) => {
-        if (jiraTicketRegex.match(item)) {
-            const title = jiraTicketRegex.exec(item)
-            return { ...acc, [title]: [...acc([item] || [])] }
+        if (jiraTicketRegex.exec(item)) {
+            return { ...acc, [item]: [...acc([item] || [])] }
         }
     })
+    console.log('titleResult===>', titleResult)
     console.log('messageObj===>', messageObj)
 }
 
