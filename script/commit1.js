@@ -26,6 +26,16 @@ function commit() {
     // commit2()
 }
 
+function getTicketInfo(commitList) {
+    let messageObj = commitList.reduce((acc, item) => {
+        if (jiraTicketRegex.match(item)) {
+            const title = jiraTicketRegex.exec(item)
+            return { ...acc, [title]: [...acc([item] || [])] }
+        }
+    })
+    console.log('messageObj===>', messageObj)
+}
+
 // async function commit2() {
 //     const fetch2 = new fetch({ auth: `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` });
 //     const result2 = await fetch2('https://github.com/zzr6036/coupon-demo/commits')
