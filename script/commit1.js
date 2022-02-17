@@ -1,31 +1,53 @@
 
 const headCommit = String(process.argv.slice(2))
 const jiraTicketRegex = /((SANFRANSOK|MH)-\d+)/
-
+const sampleList = [
+    '[MH-123] This is the testing (#28)',
+    '',
+    '* this is the first commit',
+    '',
+    '* this is the second commit'
+]
 function commit() {
     const commitList = typeof headCommit === 'string' ? headCommit.split(/\r?\n/) : []
     const { title, message } = getTicketInfo(commitList, headCommit)
-    console.log('process.argv.slice===>', process.argv.slice(2))
-    console.log(' process.argv ====>', process.argv)
-    console.log('headCommit==>', headCommit)
-    console.log('commitList==>', commitList)
+    // console.log('process.argv.slice===>', process.argv.slice(2))
+    // console.log(' process.argv ====>', process.argv)
+    // console.log('headCommit==>', headCommit)
+    // console.log('commitList==>', commitList)
+    console.log('title==>', title)
+    console.log('message==>', message)
 }
 
 function getTicketInfo(commitList, headCommit) {
     const titleResult = jiraTicketRegex.exec(headCommit)
     const jiraTicket = titleResult[0]
+    const message = commitList[0]
     const isSkipDanger = headCommit.toLowerCase().includes('#skip-danger')
-    let messageObj = commitList.reduce((acc, item) => {
-        if (item.includes(jiraTicket)) {
-            return { ...acc, [jiraTicket]: [...([item] || [])] }
+    // let messageObj = commitList.reduce((acc, item) => {
+    //     if (item.includes(jiraTicket)) {
+    //         return { ...acc, [jiraTicket]: [...([item] || [])] }
+    //     }
+    // }, {})
+    // let messageObj = sampleList.reduce((acc, item) => {
+    //     if (item.includes(jiraTicket)) {
+    //         console.log('here')
+    //         return { ...acc, [jiraTicket]: [...([item] || [])] }
+    //     }
+
+    // }, {})
+    // console.log('jiraTicket===>', jiraTicket)
+    // console.log('isSkipDanger===>', isSkipDanger)
+    // console.log('messageObj===>', messageObj)
+    if (isSkipDanger) {
+        return {
+            title: '',
+            message: message
         }
-    }, {})
-    console.log('jiraTicket===>', jiraTicket)
-    console.log('isSkipDanger===>', isSkipDanger)
-    console.log('messageObj===>', messageObj)
+    }
     return {
-        title: '',
-        message: ''
+        title: jiraTicket,
+        message: message
     }
 }
 
