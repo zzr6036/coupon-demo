@@ -61,3 +61,26 @@ jobs:
       #           }
       #         })
       #       });
+#       - name: Push Commit
+#         uses: actions/github-script@v5
+#         env:
+#           TEST_TOKEN: "test"
+#         with:
+#           script: |
+#             const fetch = require('node-fetch');
+#             const { TEST_TOKEN } = process.env;
+#             await fetch('${TEST_TOKEN}', {
+#               method: 'POST',
+#               headers: {
+#                 'Content-Type': 'application/json',
+#               },
+#               body: JSON.stringfy({
+#                 msgtype: 'markdown',
+#                 markdown: {
+#                   `Commit Message: ${{ github.event.head_commit.message }} \n
+#                     Please visit [Github](https://github.com/${{github.repository}}/actions/runs/${{github.run_id}})
+#                   `
+#                 }
+#               })
+#             });
+          # Please visit [Github](https://github.com/zzr6036/coupon-demo/actions/runs/${{github.event.repository.pushed_at}})
