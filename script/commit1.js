@@ -3,15 +3,13 @@
 
 const commits = process.argv.slice(2)
 console.log('argu====>', process.argv)
-async function commit() {
+async function commit(allCommits) {
     console.log('todo')
-    console.log('commits====>', commits)
-    console.log('type of commits1====>', typeof commits)
+    console.log('allCommits====>', allCommits)
     const commitList = []
-    if (commits && commits.length > 0) {
-        commits.forEach(commit => {
-            console.log('commit1===>', commit)
-        })
+    for (const commit of allCommits) {
+        console.log('commit===>', commit)
+        console.log('commit message===>', commit.message)
     }
     // const result1 = await fetch('https://github.com/zzr6036/coupon-demo/commits')
     // console.log('result 1===>', result1)
@@ -24,7 +22,7 @@ async function commit() {
 //     console.log('result2===>', result2)
 // }
 
-commit()
+commit(commits)
 
 
 // const octokit = new Octokit({ auth: `personal-access-token123` });
