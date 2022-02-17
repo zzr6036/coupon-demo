@@ -58,7 +58,7 @@ function getTicketInfo(commitList, headCommit) {
 // }
 
 commit()
-// this is test2
+// this is test3
 // this is test456
 
 // const octokit = new Octokit({ auth: `personal-access-token123` });
