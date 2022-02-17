@@ -46,7 +46,7 @@ commit()
 // });
 
 // node commit1.js "[MH-111] tHIS IS THE COMMIT (#26)" 
-// node commit1.js "[MH-111] tHIS IS THE COMMIT (#26) \n*[MH-111] test" 
+// node commit1.js "[MH-123] tHIS IS THE COMMIT (#26) \n*[MH-123] test" 
 
 // '[MH-1111] This is the testing title (#27)\n' +
 // '\n' +
