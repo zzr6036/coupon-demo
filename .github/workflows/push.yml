@@ -16,7 +16,7 @@ jobs:
           node-version: 15
       # - run: npm install node-fetch@^3.1.0
       - name: Commit Script
-        run: node ./script/commit1.js ${{ join(github.event.commits.*.message, '\n') }}
+        run: node ./script/commit1.js ${{join(github.event.commits.*.message, '\n')}}
       # - name: Commit Script
       #   run: |
       #     result=$(node ./script/commit1.js ${{ toJSON(github.event.commits) }})
