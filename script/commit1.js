@@ -7,7 +7,6 @@
 function commit() {
     const { headCommit, commits } = process.argv.slice(2)
     console.log('process.argv===>', process.argv.slice(2))
-    console.log('process.argv tojson===>', JSON.parse(process.argv.slice(2)))
     console.log('headCommit ====>', headCommit)
     console.log('commits ====>', commits)
     // const list = allCommits.split('|| ') || []
