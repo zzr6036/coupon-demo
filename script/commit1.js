@@ -54,3 +54,6 @@ commit()
 //   org: "octokit",
 //   type: "private",
 // });
+
+// node commit1.js "[MH-111] tHIS IS THE COMMIT (#26)" 
+// node commit1.js "[MH-111] tHIS IS THE COMMIT (#26) \n*[MH-111] test" 
