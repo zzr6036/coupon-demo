@@ -45,3 +45,11 @@ commit()
 
 // node commit1.js "[MH-111] tHIS IS THE COMMIT (#26)" 
 // node commit1.js "[MH-111] tHIS IS THE COMMIT (#26) \n*[MH-111] test" 
+
+// '[MH-1111] This is the testing title (#27)\n' +
+// '\n' +
+// '* this is the first commit\r\n' +
+// '\r\n' +
+// '* this is the second commit'
+
+// node commit1.js '[MH-1111] This is the testing title (#27)\n \n * this is the first commit\r\n \r\n * this is the second commit'
