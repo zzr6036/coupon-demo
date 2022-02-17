@@ -2,7 +2,7 @@
 // const { default: fetch } = require('node-fetch')
 
 const commits = process.argv.slice(2)
-console.log('argu====>', process.argv)
+console.log('argu====>', process)
 function commit(allCommits) {
     console.log('todo')
     console.log('allCommits====>', allCommits)
