@@ -16,7 +16,7 @@ function commit() {
     console.log(' process.argv ====>', process.argv)
     // console.log('headCommit==>', headCommit)
     // console.log('commitList==>', commitList)
-    console.log('title==>', title)
+    console.log('title1==>', title)
     console.log('message==>', message)
 }
 
