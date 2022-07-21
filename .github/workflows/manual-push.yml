@@ -1,4 +1,4 @@
-name: Push Action
+name: Manual Trigger
 
 on:
   workflow_dispatch:
@@ -10,9 +10,6 @@ on:
         options:
           - env1
           - env 2
-
-    branches:
-      - ziru/test-option
 
 jobs:
   Build:
