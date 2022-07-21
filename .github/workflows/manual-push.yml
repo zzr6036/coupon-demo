@@ -1,0 +1,35 @@
+name: Manual Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Which environment?"
+        type: choice
+        required: true
+        options:
+          - env1
+          - env2
+
+jobs:
+  Build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 15
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15
+      - name: Commit Script
+        run: node ./script/commit1.js "${{github.event.head_commit.message}}" "${{github.event.commits[0].author.name}}"
+      - name: "Succeed"
+        if: ${{ !failure() }}
+        run: |
+          echo "Succeed"
+          echo "choice is ${{github}}"
+          echo "input is ${{inputs}}"
+      - name: "Failed"
+        if: ${{ failure() }}
+        run: |
+          echo "choice is ${{github}}"
+          echo "input is ${{inputs}}"
