@@ -9,7 +9,7 @@ on:
         required: true
         options:
           - env1
-          - env 2
+          - env2
 
 jobs:
   Build:
@@ -21,7 +21,14 @@ jobs:
         with:
           node-version: 15
       - name: Commit Script
-        run: node ./script/commit2.js "${{github.event.head_commit.message}}" "${{github.event.commits[0].author.name}}"
+        run: node ./script/commit1.js "${{github.event.head_commit.message}}" "${{github.event.commits[0].author.name}}"
+      - name: "Succeed"
+      - uses: actions/github-script@5
+        if: ${{ !failure() }}
+        run: |
+          echo "Succeed"
+          echo "choice is ${{github}}"
+          echo "input is ${{inputs}}"
       - name: "Failed"
       - uses: actions/github-script@5
         if: ${{ failure() }}
