@@ -22,12 +22,16 @@ jobs:
           node-version: 15
       - name: Commit Script
         run: node ./script/commit1.js "${{github.event.head_commit.message}}" "${{github.event.commits[0].author.name}}"
-      - name: "Succeed"
-        if: ${{ !failure() }}
+      - name: "Succeed env1"
+        if: ${{ !failure() }} && ${{inputs.env}} == 'env1'
         run: |
-          echo "Succeed"
-          echo "choice is ${{toJson(github)}}"
-          echo "input is ${{toJson(inputs)}}"
+          echo "Succeed env1"
+          # echo "choice is ${{toJson(github)}}"
+          # echo "input is ${{toJson(inputs)}}"
+      - name: "Succeed env2"
+        if: ${{ !failure() }} && ${{inputs.env}} == 'env2'
+        run: |
+          echo "Succeed env2"
       - name: "Failed"
         if: ${{ failure() }}
         run: |
