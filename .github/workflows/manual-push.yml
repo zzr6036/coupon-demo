@@ -26,10 +26,11 @@ jobs:
         if: ${{ !failure() }}
         run: |
           echo "Succeed"
-          echo "choice is ${{github}}"
-          echo "input is ${{inputs}}"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
       - name: "Failed"
         if: ${{ failure() }}
         run: |
-          echo "choice is ${{github}}"
-          echo "input is ${{inputs}}"
+          echo "Failed"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
