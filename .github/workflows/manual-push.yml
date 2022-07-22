@@ -23,18 +23,39 @@ jobs:
       - name: Commit Script
         run: node ./script/commit1.js "${{github.event.head_commit.message}}" "${{github.event.commits[0].author.name}}"
       - name: "Succeed env1"
-        if: ${{ !failure() }} && ${{inputs.env}} == 'env1'
+        if: ${{ !failure() && inputs.env == 'env1'}}
         run: |
           echo "Succeed env1"
-          # echo "choice is ${{toJson(github)}}"
-          # echo "input is ${{toJson(inputs)}}"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
       - name: "Succeed env2"
-        if: ${{ !failure() }} && ${{inputs.env}} == 'env2'
+        if: ${{ !failure() && inputs.env == 'env2' }}
         run: |
           echo "Succeed env2"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
       - name: "Failed"
         if: ${{ failure() }}
         run: |
           echo "Failed"
           echo "choice is ${{toJson(github)}}"
           echo "input is ${{toJson(inputs)}}"
+
+      # - name: "Succeed env1"
+      #   if: ${{ !failure() }} && ${{inputs.env}} == 'env1'
+      #   run: |
+      #     echo "Succeed env1"
+      #     echo "choice is ${{toJson(github)}}"
+      #     echo "input is ${{toJson(inputs)}}"
+      # - name: "Succeed env2"
+      #   if: ${{ !failure() }} && ${{inputs.env}} == 'env2'
+      #   run: |
+      #     echo "Succeed env2"
+      #     echo "choice is ${{toJson(github)}}"
+      #     echo "input is ${{toJson(inputs)}}"
+      # - name: "Failed"
+      #   if: ${{ failure() }}
+      #   run: |
+      #     echo "Failed"
+      #     echo "choice is ${{toJson(github)}}"
+      #     echo "input is ${{toJson(inputs)}}"
