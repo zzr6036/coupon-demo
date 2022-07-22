@@ -42,13 +42,13 @@ jobs:
           echo "input is ${{toJson(inputs)}}"
 
       - name: "Succeed env1-1"
-        if: inputs.env == 'ppe'
+        if: ${{inputs.env == 'ppe'}}
         run: |
           echo "Succeed env1"
           echo "choice is ${{toJson(github)}}"
           echo "input is ${{toJson(inputs)}}"
       - name: "Succeed env2-1"
-        if: inputs.env == 'pdc'
+        if: ${{inputs.env == 'pdc'}}
         run: |
           echo "Succeed env2"
           echo "choice is ${{toJson(github)}}"
