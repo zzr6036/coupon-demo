@@ -41,21 +41,21 @@ jobs:
           echo "choice is ${{toJson(github)}}"
           echo "input is ${{toJson(inputs)}}"
 
-      # - name: "Succeed env1"
-      #   if: ${{ !failure() }} && ${{inputs.env}} == 'env1'
-      #   run: |
-      #     echo "Succeed env1"
-      #     echo "choice is ${{toJson(github)}}"
-      #     echo "input is ${{toJson(inputs)}}"
-      # - name: "Succeed env2"
-      #   if: ${{ !failure() }} && ${{inputs.env}} == 'env2'
-      #   run: |
-      #     echo "Succeed env2"
-      #     echo "choice is ${{toJson(github)}}"
-      #     echo "input is ${{toJson(inputs)}}"
-      # - name: "Failed"
-      #   if: ${{ failure() }}
-      #   run: |
-      #     echo "Failed"
-      #     echo "choice is ${{toJson(github)}}"
-      #     echo "input is ${{toJson(inputs)}}"
+      - name: "Succeed env1-1"
+        if: inputs.env == 'ppe'
+        run: |
+          echo "Succeed env1"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
+      - name: "Succeed env2-1"
+        if: inputs.env == 'pdc'
+        run: |
+          echo "Succeed env2"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
+      - name: "Failed-1"
+        if: ${{ failure() }}
+        run: |
+          echo "Failed"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
