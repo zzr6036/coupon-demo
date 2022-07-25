@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 15
-        id: actions
+        id: action_id
         uses: actions/setup-node@v1
         with:
           node-version: 15
@@ -43,12 +43,12 @@ jobs:
           echo "input is ${{toJson(inputs)}}"
 
       - name: "Succeed env1-1"
-        if: ${{inputs.env == 'env1'}} && steps.actions.outputs.should-build == 'true'
+        if: ${{inputs.env == 'env1'}}
         run: |
           echo "Succeed env1"
-          echo ${{toJson(steps.actions.outputs)}}
+          echo ${{toJson(steps.action_id.outputs)}}
       - name: "Succeed env2-1"
-        if: ${{inputs.env == 'env2'}} && steps.actions.outputs.should-build == 'true'
+        if: ${{inputs.env == 'env2'}}
         run: |
           echo "Succeed env2"
-          echo ${{toJson(steps.actions.outputs)}}
+          echo ${{toJson(steps.actions.action_id)}}
