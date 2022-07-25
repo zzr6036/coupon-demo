@@ -46,9 +46,9 @@ jobs:
         if: ${{inputs.env == 'env1'}}
         run: |
           echo "Succeed env1"
-          echo steps.action_id.outputs.response
+          echo ${{steps.action_id.outputs.response}}
       - name: "Succeed env2-1"
         if: ${{inputs.env == 'env2'}}
         run: |
           echo "Succeed env2"
-          echo steps.action_id.outputs.response
+          echo ${{steps.action_id.outputs.response}}
