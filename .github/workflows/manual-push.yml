@@ -43,12 +43,14 @@ jobs:
           echo "input is ${{toJson(inputs)}}"
 
       - name: "Succeed env1-1"
-        if: ${{inputs.env == 'env1'}}
+        needs: [action_id]
+        if: ${{inputs.env == 'env1'}} && needs.action_id.should_build == 'true'
         run: |
           echo "Succeed env1"
-          echo ${{steps.action_id.outputs.response}}
+          echo needs.action_id.should_build
       - name: "Succeed env2-1"
-        if: ${{inputs.env == 'env2'}}
+        needs: [action_id]
+        if: ${{inputs.env == 'env2'}} && needs.action_id.should_build == 'true'
         run: |
           echo "Succeed env2"
-          echo ${{steps.action_id.outputs.response}}
+          echo needs.action_id.should_build
