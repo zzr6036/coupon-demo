@@ -44,13 +44,13 @@ jobs:
 
       - name: "Succeed env1-1"
         needs: [action_id]
-        if: ${{inputs.env == 'env1'}} && needs.action_id.should_build == 'true'
+        if: ${{inputs.env == 'env1'}} && needs.action_id.outputs.should_build == 'true'
         run: |
           echo "Succeed env1"
           echo needs.action_id.should_build
       - name: "Succeed env2-1"
         needs: [action_id]
-        if: ${{inputs.env == 'env2'}} && needs.action_id.should_build == 'true'
+        if: ${{inputs.env == 'env2'}} && needs.action_id.outputs.should_build == 'true'
         run: |
           echo "Succeed env2"
           echo needs.action_id.should_build
