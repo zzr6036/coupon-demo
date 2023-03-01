@@ -10,10 +10,10 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 15
+      - name: Use Node.js 16
         uses: actions/setup-node@v1
         with:
-          node-version: 15
+          node-version: 16
       # - run: npm install node-fetch@^3.1.0
       # - name: Commit Script
       #   run: node ./script/commit1.js ${{ toJSON(github.event)}}
