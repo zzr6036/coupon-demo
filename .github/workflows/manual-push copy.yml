@@ -1,0 +1,56 @@
+name: Manual Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Which environment?"
+        type: choice
+        required: true
+        options:
+          - env1
+          - env2
+
+jobs:
+  Build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 15
+        id: action_id
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15
+      - name: Commit Script
+        run: node ./script/commit1.js "${{github.event.head_commit.message}}" "${{github.event.commits[0].author.name}}"
+      - name: "Succeed env1"
+        if: ${{ !failure() && inputs.env == 'env1'}}
+        run: |
+          echo "Succeed env1"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
+      - name: "Succeed env2"
+        if: ${{ !failure() && inputs.env == 'env2' }}
+        run: |
+          echo "Succeed env2"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
+      - name: "Failed"
+        if: ${{ failure() }}
+        run: |
+          echo "Failed"
+          echo "choice is ${{toJson(github)}}"
+          echo "input is ${{toJson(inputs)}}"
+
+      - name: "Succeed env1-1"
+        needs: [action_id]
+        if: ${{inputs.env == 'env1'}} && needs.action_id.outputs.should_build == 'true'
+        run: |
+          echo "Succeed env1"
+          echo needs.action_id.should_build
+      - name: "Succeed env2-1"
+        needs: [action_id]
+        if: ${{inputs.env == 'env2'}} && needs.action_id.outputs.should_build == 'true'
+        run: |
+          echo "Succeed env2"
+          echo needs.action_id.should_build
