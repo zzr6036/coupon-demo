@@ -14,16 +14,17 @@ if (pr) {
     // 2) If there are changes, but not unit test
     const hasPackageChanges = modifiedFiles.length > 0;
     const noUnitTestFiles = [];
+    const typescriptFilePattern = /.ts|.tsx/
     modifiedFiles.filter(filepath => {
         const pieces = filepath.split('/');
         const lastPieces = pieces.pop();
         const fileName = lastPieces?.split('.')[0];
-        if (!filepath.includes(`${fileName}.test`)) {
+        if (typescriptFilePattern.test(lastPieces) && !filepath.includes(`${fileName}.test`)) {
             noUnitTestFiles.push(filepath);
         }
     });
     if (hasPackageChanges && noUnitTestFiles.length) {
-        markdown('### No unit test files : \n - ' + noUnitTestFiles.join('\n'));
+        markdown('### No unit test files : \n - ' + noUnitTestFiles.join('\n-'));
     }
 
     // 3) Generate report
