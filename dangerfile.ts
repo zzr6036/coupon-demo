@@ -15,11 +15,13 @@ if (pr) {
     const hasPackageChanges = modifiedFiles.length > 0;
     const noUnitTestFiles = [];
     const typescriptFilePattern = /.ts|.tsx/
+    const ignoreFiles = ['dangerfile.ts']
     modifiedFiles.filter(filepath => {
         const pieces = filepath.split('/');
         const lastPieces = pieces.pop();
         const fileName = lastPieces?.split('.')[0];
-        if (typescriptFilePattern.test(lastPieces) && !filepath.includes(`${fileName}.test`)) {
+        const isIncludeIgnoreFiles = ignoreFiles.some(f => lastPieces.includes(f))
+        if (!isIncludeIgnoreFiles && typescriptFilePattern.test(lastPieces) && !filepath.includes(`${fileName}.test`)) {
             noUnitTestFiles.push(filepath);
         }
     });
