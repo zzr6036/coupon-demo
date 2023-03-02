@@ -1,6 +1,6 @@
 import { danger, markdown, warn, schedule } from 'danger'
-// const { generateReport } = require('./script/report')
-import { generateReport } from './script/report'
+const { generateReport } = require('./script/report')
+// import { generateReport } from './script/report'
 
 const pr = danger.github.pr
 if (pr) {
