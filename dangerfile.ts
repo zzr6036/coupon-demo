@@ -14,12 +14,12 @@ if (pr) {
 
     if (Object.keys(reportList).length) {
         markdown('### Unit test coverage report:')
-        const coverReportRows: string[] = []
+        let coverReportRows: string[] = []
         schedule(async () => {
             Object.keys(reportList).forEach(key => {
                 coverReportRows.push(`| ${key} | ${reportList[key].statements.c} | ${reportList[key].branches.c} | ${reportList[key].functions.c} | ${reportList[key].lines.c} |`)
             })
-            if (coverReportRows.length) {
+            if (coverReportRows.length > 0) {
                 markdown(
                     '\n | Packages | Statements | Branches | Functions | Lines |\n | --- | --- | --- | --- | --- |\n' + coverReportRows.join('\n')
                 )
