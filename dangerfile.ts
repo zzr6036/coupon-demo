@@ -1,7 +1,8 @@
 import { danger, markdown, warn, schedule } from 'danger'
-const { generateReport } = require('./script/report')
-const pr = danger.github.pr
+// const { generateReport } = require('./script/report')
+import { generateReport } from './script/report'
 
+const pr = danger.github.pr
 if (pr) {
     if (pr.assignee === null) {
         warn("Please assign someone to merge this PR, and optionally include people who should review.")
