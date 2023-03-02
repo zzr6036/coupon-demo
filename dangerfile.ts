@@ -3,16 +3,33 @@ const { generateReport } = require('./script/report')
 // import { generateReport } from './script/report'
 
 const pr = danger.github.pr
+const modifiedFiles = danger.git.modified_files;
 if (pr) {
+    // 1) No assigner
     if (pr.assignee === null) {
         warn("Please assign someone to merge this PR, and optionally include people who should review.")
         markdown('Please assign someone to merge this PR')
     }
 
+    // 2) If there are changes, but not unit test
+    const hasPackageChanges = modifiedFiles.length > 0;
+    const noUnitTestFiles: string[] = [];
+    modifiedFiles.filter(filepath => {
+        const pieces = filepath.split('/');
+        const lastPieces = pieces.pop();
+        const fileName = lastPieces?.split('.')[0];
+        if (!filepath.includes(`${fileName}.test`)) {
+            noUnitTestFiles.push(filepath);
+        }
+    });
+    if (hasPackageChanges && noUnitTestFiles.length) {
+        markdown('### No unit test files : \n - ' + noUnitTestFiles.join('\n'));
+    }
+
+    // 3) Generate report
     const reportList = generateReport()
     console.log('1. pr=>', pr)
     console.log('2. reportList=>', reportList)
-
     if (Object.keys(reportList).length) {
         markdown('### Unit test coverage report:')
         const coverReportRows = []
