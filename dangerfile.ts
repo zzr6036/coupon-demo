@@ -13,7 +13,7 @@ if (pr) {
 
     // 2) If there are changes, but not unit test
     const hasPackageChanges = modifiedFiles.length > 0;
-    const noUnitTestFiles: string[] = [];
+    const noUnitTestFiles = [];
     modifiedFiles.filter(filepath => {
         const pieces = filepath.split('/');
         const lastPieces = pieces.pop();
