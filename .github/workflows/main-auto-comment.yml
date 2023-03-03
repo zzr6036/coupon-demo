@@ -31,8 +31,9 @@ on:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
             This is the unit test coverage report
-      - name: Report
-        run: node .scripts/unit-test-coverage-report.js
+      # - name: Report
+      #   run: node .scripts/unit-test-coverage-report.js
+
 # jobs:
 #   Danger:
 #     runs-on: ubuntu-latest
