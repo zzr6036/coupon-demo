@@ -18,7 +18,7 @@ if (pr) {
         const hasPackageChanges = modifiedFiles.length > 0;
         const noUnitTestFiles = [];
         const typescriptFilePattern = /.ts|.tsx/
-        const ignoreFiles = ['dangerfile.ts']
+        const ignoreFiles = [/*'dangerfile.ts'*/]
         modifiedFiles.filter(filepath => {
             const pieces = filepath.split('/');
             const lastPieces = pieces.pop();
