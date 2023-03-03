@@ -33,18 +33,18 @@ jobs:
             console.log('report=>', report)
           pullRequestEditedComment: |
             test test test
-      # - uses: actions/github-script@v5
-      #   with:
-      #     github-token: ${{secrets.GITHUB_TOKEN}}
-      #     script: |
-      #       const report = require('./script/unit-test-coverage-report.js')
-      #       console.log('report=>', report)
-      #       github.rest.issues.createComment({
-      #         issue_number: context.issue.number,
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         body: report
-      #       })
+      - uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const script = require('./script/unit-test-coverage-report.js')
+            console.log('test script=>', script({github, context}))
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            })
       # - name: Report
       #   run: node ./script/unit-test-coverage-report.js
 

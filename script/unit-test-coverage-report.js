@@ -22,8 +22,12 @@ function report() {
     }
 }
 
-// if (require.main === module) {
-report()
-// }
+module.exports = ({ github, context }) => {
+    return report()
+}
+
+// // if (require.main === module) {
+// report()
+// // }
 
 
