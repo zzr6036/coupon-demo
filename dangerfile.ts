@@ -48,7 +48,7 @@ if (pr) {
             const coverReportRows = []
             schedule(async () => {
                 Object.keys(reportList).forEach(key => {
-                    coverReportRows.push(`| ${key} | ${reportList[key].statements.d || '-'} (${reportList[key].statements.e || '-'}) | ${reportList[key].branches.d || '-'} (${reportList[key].branches.e || '-'}) | ${reportList[key].functions.d || '-'} (${reportList[key].functions.e || '-'}) | ${reportList[key].lines.d || '-'} (${reportList[key].lines.e || '-'}) |`)
+                    coverReportRows.push(`| ${key} | ${reportList[key].statements.d || '-'} \n ${reportList[key].statements.e || '-'} | ${reportList[key].branches.d || '-'} \n ${reportList[key].branches.e || '-'} | ${reportList[key].functions.d || '-'} \n ${reportList[key].functions.e || '-'} | ${reportList[key].lines.d || '-'} \n ${reportList[key].lines.e || '-'} |`)
                 })
                 console.log('coverReportRows=>', coverReportRows)
                 if (coverReportRows.length > 0) {
