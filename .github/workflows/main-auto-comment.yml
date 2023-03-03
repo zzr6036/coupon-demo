@@ -34,14 +34,13 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const {report} = require('./script/unit-test-coverage-report.js')
-            const reportList = report()
+            const report = require('./script/unit-test-coverage-report.js')
             console.log('report=>', report)
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: reportList
+              body: report
             })
       # - name: Report
       #   run: node ./script/unit-test-coverage-report.js
