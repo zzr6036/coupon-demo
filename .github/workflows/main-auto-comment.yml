@@ -30,4 +30,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
-            node ./unit-test-coverage-report.js
+            node .scripts/unit-test-coverage-report.js
