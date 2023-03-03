@@ -39,11 +39,12 @@ jobs:
           script: |
             const script = require('./script/unit-test-coverage-report.js')
             console.log('test script=>', script({github, context}))
+            const reportList = script({github, context})
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: report
+              body: reportList
             })
       # - name: Report
       #   run: node ./script/unit-test-coverage-report.js
