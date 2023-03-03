@@ -4,7 +4,7 @@ function report() {
     const reportList = generateReport()
     console.log('2. reportList=>', reportList)
     if (Object.keys(reportList).length) {
-        markdown('### Unit test coverage report:')
+        // markdown('### Unit test coverage report:')
         const coverReportRows = []
         schedule(async () => {
             Object.keys(reportList).forEach(key => {
@@ -12,9 +12,11 @@ function report() {
             })
             console.log('coverReportRows=>', coverReportRows)
             if (coverReportRows.length > 0) {
-                markdown(
-                    '\n | Packages | Statements | Branches | Functions | Lines |\n | --- | --- | --- | --- | --- |\n' + coverReportRows.join('\n')
-                )
+                const comments = '\n | Packages | Statements | Branches | Functions | Lines |\n | --- | --- | --- | --- | --- |\n' + coverReportRows.join('\n')
+                return comments
+                // markdown(
+                //     '\n | Packages | Statements | Branches | Functions | Lines |\n | --- | --- | --- | --- | --- |\n' + coverReportRows.join('\n')
+                // )
             }
         })
     }
