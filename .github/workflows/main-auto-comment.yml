@@ -31,7 +31,7 @@ jobs:
           pullRequestOpened: |
             This is a auto generate report
       - name: Report
-        run: node ./scripts/unit-test-coverage-report.js
+        run: node ./script/unit-test-coverage-report.js
 # jobs:
 #   Danger:
 #     runs-on: ubuntu-latest
