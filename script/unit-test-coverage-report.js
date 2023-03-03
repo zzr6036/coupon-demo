@@ -2,7 +2,6 @@ const { generateReport } = require('./report')
 
 function report() {
     const reportList = generateReport()
-    console.log('1. pr=>', pr)
     console.log('2. reportList=>', reportList)
     if (Object.keys(reportList).length) {
         markdown('### Unit test coverage report:')
