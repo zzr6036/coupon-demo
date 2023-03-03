@@ -9,6 +9,7 @@ console.log('1.danger github=>\n', danger)
 console.log('1.danger github=>\n', danger.github)
 // console.log('test=>', danger.github.api.pulls.checkIfMerged)
 
+
 if (pr) {
     // 1) No assigner
     if (pr.assignee === null) {
