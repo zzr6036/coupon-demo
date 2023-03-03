@@ -29,10 +29,9 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
-            run node .scripts/unit-test-coverage-report.js
-      # - name: Report
-      #   run: node .scripts/unit-test-coverage-report.js
-
+            This is a auto generate report
+      - name: Report
+        run: node .scripts/unit-test-coverage-report.js
 # jobs:
 #   Danger:
 #     runs-on: ubuntu-latest
