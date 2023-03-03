@@ -8,6 +8,12 @@ name: Auto Comment
 #   pull_request:
 #     branches:
 #       - main
+on:
+  workflow_run:
+    types:
+      - "completed"
+    workflows:
+      - "Integrate"
 
 jobs:
   Comments:
@@ -16,12 +22,13 @@ jobs:
     #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     if: >
       github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'success' &&
-      github.actor == 'dependabot[bot]' && (
-        startsWith(github.event.workflow_run.head_commit.message, 'composer(deps)') ||
-        startsWith(github.event.workflow_run.head_commit.message, 'composer(deps-dev)') ||
-        startsWith(github.event.workflow_run.head_commit.message, 'github-actions(deps)')
-      )
+      github.event.workflow_run.conclusion == 'success' 
+      # &&
+      # github.actor == 'dependabot[bot]' && (
+      #   startsWith(github.event.workflow_run.head_commit.message, 'composer(deps)') ||
+      #   startsWith(github.event.workflow_run.head_commit.message, 'composer(deps-dev)') ||
+      #   startsWith(github.event.workflow_run.head_commit.message, 'github-actions(deps)')
+      # )
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 16
