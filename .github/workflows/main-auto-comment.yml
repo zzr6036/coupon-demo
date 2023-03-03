@@ -29,9 +29,9 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const report = require('./script/unit-test-coverage-report.js')
+            const {report} = require('./script/unit-test-coverage-report.js')
           pullRequestEdited: |
-            test test test: ${{ report }}
+            test test test
       # - uses: actions/github-script@v5
       #   with:
       #     github-token: ${{secrets.GITHUB_TOKEN}}
