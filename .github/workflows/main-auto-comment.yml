@@ -25,15 +25,13 @@ on:
       #   run: yarn install --frozen-lockfile
       # - name: Danger(Push)
       #   run: yarn danger ci --failOnErrors
-      - name: auto comments
-        uses: wow-actions/auto-comment@v1
+      - uses: wow-actions/auto-comment@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
             This is the unit test coverage report
-      # - name: Report
-      #   run: node .scripts/unit-test-coverage-report.js
-
+      - name: Report
+        run: node .scripts/unit-test-coverage-report.js
 # jobs:
 #   Danger:
 #     runs-on: ubuntu-latest
