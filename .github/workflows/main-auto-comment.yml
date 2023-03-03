@@ -25,14 +25,14 @@ jobs:
       #   run: yarn install --frozen-lockfile
       # - name: Danger(Push)
       #   run: yarn danger ci --failOnErrors
-      - uses: wow-actions/auto-comment@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const {report} = require('./script/unit-test-coverage-report.js')
-            console.log('report=>', report)
-          pullRequestEditedComment: |
-            test test test
+      # - uses: wow-actions/auto-comment@v1
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     script: |
+      #       const {report} = require('./script/unit-test-coverage-report.js')
+      #       console.log('report=>', report)
+      #     pullRequestEditedComment: |
+      #       test test test
       - uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
