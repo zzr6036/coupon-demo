@@ -39,24 +39,24 @@ if (pr) {
 
 
     // 3) Generate report
-    if (!isPRMerged) {
-        const reportList = generateReport()
-        console.log('1. pr=>', pr)
-        console.log('2. reportList=>', reportList)
-        if (Object.keys(reportList).length) {
-            markdown('### Unit test coverage report:')
-            const coverReportRows = []
-            schedule(async () => {
-                Object.keys(reportList).forEach(key => {
-                    coverReportRows.push(`| ${key} | ${reportList[key].statements.d || '-'} (${reportList[key].statements.e || '-'}) | ${reportList[key].branches.d || '-'} (${reportList[key].branches.e || '-'}) | ${reportList[key].functions.d || '-'} (${reportList[key].functions.e || '-'}) | ${reportList[key].lines.d || '-'} (${reportList[key].lines.e || '-'}) |`)
-                })
-                console.log('coverReportRows=>', coverReportRows)
-                if (coverReportRows.length > 0) {
-                    markdown(
-                        '\n | Packages | Statements | Branches | Functions | Lines |\n | --- | --- | --- | --- | --- |\n' + coverReportRows.join('\n')
-                    )
-                }
-            })
-        }
-    }
+    // if (!isPRMerged) {
+    //     const reportList = generateReport()
+    //     console.log('1. pr=>', pr)
+    //     console.log('2. reportList=>', reportList)
+    //     if (Object.keys(reportList).length) {
+    //         markdown('### Unit test coverage report:')
+    //         const coverReportRows = []
+    //         schedule(async () => {
+    //             Object.keys(reportList).forEach(key => {
+    //                 coverReportRows.push(`| ${key} | ${reportList[key].statements.d || '-'} (${reportList[key].statements.e || '-'}) | ${reportList[key].branches.d || '-'} (${reportList[key].branches.e || '-'}) | ${reportList[key].functions.d || '-'} (${reportList[key].functions.e || '-'}) | ${reportList[key].lines.d || '-'} (${reportList[key].lines.e || '-'}) |`)
+    //             })
+    //             console.log('coverReportRows=>', coverReportRows)
+    //             if (coverReportRows.length > 0) {
+    //                 markdown(
+    //                     '\n | Packages | Statements | Branches | Functions | Lines |\n | --- | --- | --- | --- | --- |\n' + coverReportRows.join('\n')
+    //                 )
+    //             }
+    //         })
+    //     }
+    // }
 }
