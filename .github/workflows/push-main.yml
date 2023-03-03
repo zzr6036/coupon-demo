@@ -1,23 +1,23 @@
-name: Push to main
+# name: Push to main
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  Danger:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16
-        id: action_id
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: Install Dependencies(Push)
-        run: yarn install --frozen-lockfile
-      - name: Danger(Push)
-        run: yarn danger ci --failOnErrors
+# jobs:
+#   Danger:
+#     runs-on: ubuntu-latest
+#     env:
+#       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Use Node.js 16
+#         id: action_id
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: 16
+#       - name: Install Dependencies(Push)
+#         run: yarn install --frozen-lockfile
+#       - name: Danger(Push)
+#         run: yarn danger ci --failOnErrors

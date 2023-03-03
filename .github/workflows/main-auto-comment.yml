@@ -1,0 +1,33 @@
+name: Auto Comment
+
+# on:
+#   push:
+#     branches:
+#       - main
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Danger:
+    runs-on: ubuntu-latest
+    # env:
+    #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16
+        id: action_id
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      # - name: Install Dependencies(Push)
+      #   run: yarn install --frozen-lockfile
+      # - name: Danger(Push)
+      #   run: yarn danger ci --failOnErrors
+      - name: auto comments
+        uses: wow-actions/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pullRequestOpened: |
+            node ./unit-test-coverage-report.js
