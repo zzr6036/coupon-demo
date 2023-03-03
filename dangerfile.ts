@@ -4,6 +4,8 @@ const { generateReport } = require('./script/report')
 
 const pr = danger.github.pr
 const modifiedFiles = danger.git.modified_files;
+const isPRMerged = pr.merged
+
 if (pr) {
     // 1) No assigner
     if (pr.assignee === null) {
@@ -12,42 +14,45 @@ if (pr) {
     }
 
     // 2) If there are changes, but not unit test
-    const hasPackageChanges = modifiedFiles.length > 0;
-    const noUnitTestFiles = [];
-    const typescriptFilePattern = /.ts|.tsx/
-    const ignoreFiles = ['dangerfile.ts']
-    modifiedFiles.filter(filepath => {
-        const pieces = filepath.split('/');
-        const lastPieces = pieces.pop();
-        const fileName = lastPieces?.split('.')[0];
-        const isIncludeIgnoreFiles = ignoreFiles.some(f => lastPieces.includes(f))
-        if (!isIncludeIgnoreFiles && typescriptFilePattern.test(lastPieces) && !filepath.includes(`${fileName}.test`)) {
-            noUnitTestFiles.push(filepath);
+    if (!isPRMerged) {
+        const hasPackageChanges = modifiedFiles.length > 0;
+        const noUnitTestFiles = [];
+        const typescriptFilePattern = /.ts|.tsx/
+        const ignoreFiles = ['dangerfile.ts']
+        modifiedFiles.filter(filepath => {
+            const pieces = filepath.split('/');
+            const lastPieces = pieces.pop();
+            const fileName = lastPieces?.split('.')[0];
+            const isIncludeIgnoreFiles = ignoreFiles.some(f => lastPieces.includes(f))
+            if (!isIncludeIgnoreFiles && typescriptFilePattern.test(lastPieces) && !filepath.includes(`${fileName}.test`)) {
+                noUnitTestFiles.push(filepath);
+            }
+        });
+        if (hasPackageChanges && noUnitTestFiles.length) {
+            markdown('### No unit test files : \n - ' + noUnitTestFiles.join('\n-'));
         }
-    });
-    if (hasPackageChanges && noUnitTestFiles.length) {
-        markdown('### No unit test files : \n - ' + noUnitTestFiles.join('\n-'));
     }
+
 
     // 3) Generate report
-    const reportList = generateReport()
-    console.log('1. pr=>', pr)
-    console.log('2. reportList=>', reportList)
-    if (Object.keys(reportList).length) {
-        markdown('### Unit test coverage report:')
-        const coverReportRows = []
-        schedule(async () => {
-            Object.keys(reportList).forEach(key => {
-                coverReportRows.push(`| ${key} | ${reportList[key].statements.d || '-'} (${reportList[key].statements.e || '-'}) | ${reportList[key].branches.d || '-'} (${reportList[key].branches.e || '-'}) | ${reportList[key].functions.d || '-'} (${reportList[key].functions.e || '-'}) | ${reportList[key].lines.d || '-'} (${reportList[key].lines.e || '-'}) |`)
+    if (isPRMerged) {
+        const reportList = generateReport()
+        console.log('1. pr=>', pr)
+        console.log('2. reportList=>', reportList)
+        if (Object.keys(reportList).length) {
+            markdown('### Unit test coverage report:')
+            const coverReportRows = []
+            schedule(async () => {
+                Object.keys(reportList).forEach(key => {
+                    coverReportRows.push(`| ${key} | ${reportList[key].statements.d || '-'} (${reportList[key].statements.e || '-'}) | ${reportList[key].branches.d || '-'} (${reportList[key].branches.e || '-'}) | ${reportList[key].functions.d || '-'} (${reportList[key].functions.e || '-'}) | ${reportList[key].lines.d || '-'} (${reportList[key].lines.e || '-'}) |`)
+                })
+                console.log('coverReportRows=>', coverReportRows)
+                if (coverReportRows.length > 0) {
+                    markdown(
+                        '\n | Packages | Statements | Branches | Functions | Lines |\n | --- | --- | --- | --- | --- |\n' + coverReportRows.join('\n')
+                    )
+                }
             })
-            console.log('coverReportRows=>', coverReportRows)
-            if (coverReportRows.length > 0) {
-                markdown(
-                    '\n | Packages | Statements | Branches | Functions | Lines |\n | --- | --- | --- | --- | --- |\n' + coverReportRows.join('\n')
-                )
-            }
-        })
+        }
     }
-    // markdown(`This is test\n${data.join(', ')}`)
-
 }
