@@ -6,6 +6,7 @@ const pr = danger.github.pr
 const modifiedFiles = danger.git.modified_files;
 const isPRMerged = false
 console.log('danger github=>\n', danger.github)
+console.log('test=>', danger.github.api.pulls.checkIfMerged)
 
 if (pr) {
     // 1) No assigner
