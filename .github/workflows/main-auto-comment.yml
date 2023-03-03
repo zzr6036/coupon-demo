@@ -10,28 +10,28 @@ on:
       - main
 
   jobs:
-  Danger:
-    runs-on: ubuntu-latest
-    # env:
-    #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16
-        id: action_id
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      # - name: Install Dependencies(Push)
-      #   run: yarn install --frozen-lockfile
-      # - name: Danger(Push)
-      #   run: yarn danger ci --failOnErrors
-      - uses: wow-actions/auto-comment@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          pullRequestOpened: |
-            This is the unit test coverage report
-      - name: Report
-        run: node .scripts/unit-test-coverage-report.js
+    Danger:
+      runs-on: ubuntu-latest
+      # env:
+      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      steps:
+        - uses: actions/checkout@v2
+        - name: Use Node.js 16
+          id: action_id
+          uses: actions/setup-node@v1
+          with:
+            node-version: 16
+        # - name: Install Dependencies(Push)
+        #   run: yarn install --frozen-lockfile
+        # - name: Danger(Push)
+        #   run: yarn danger ci --failOnErrors
+        - uses: wow-actions/auto-comment@v1
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            pullRequestOpened: |
+              This is the unit test coverage report
+        - name: Report
+          run: node .scripts/unit-test-coverage-report.js
 # jobs:
 #   Danger:
 #     runs-on: ubuntu-latest
