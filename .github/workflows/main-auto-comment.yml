@@ -27,7 +27,9 @@ jobs:
       #   run: yarn danger ci --failOnErrors
       - name: auto comments
         uses: wow-actions/auto-comment@v1
+        run: |
+          node .scripts/unit-test-coverage-report.js
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           pullRequestOpened: |
-            node .scripts/unit-test-coverage-report.js
+            This is the unit test coverage report
