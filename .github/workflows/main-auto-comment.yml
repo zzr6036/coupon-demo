@@ -1,13 +1,15 @@
 name: Auto Comment
 
-on:
-  push:
-    branches:
-      - main
 # on:
-#   pull_request:
+#   push:
 #     branches:
 #       - main
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
 # on:
 #   workflow_run:
 #     types:
@@ -29,6 +31,7 @@ jobs:
     #   #   startsWith(github.event.workflow_run.head_commit.message, 'composer(deps-dev)') ||
     #   #   startsWith(github.event.workflow_run.head_commit.message, 'github-actions(deps)')
     #   # )
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 16
@@ -56,9 +59,9 @@ jobs:
             console.log('test script=>', script({github, context}))
             const reportList = script({github, context})
             github.rest.issues.createComment({
-              # issue_number: context.issue.number,
-              # owner: context.repo.owner,
-              # repo: context.repo.repo,
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               body: reportList
             })
       # - name: Report
