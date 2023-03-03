@@ -4,7 +4,8 @@ const { generateReport } = require('./script/report')
 
 const pr = danger.github.pr
 const modifiedFiles = danger.git.modified_files;
-const isPRMerged = pr.merged
+const isPRMerged = false
+console.log('danger github=>\n', danger.github)
 
 if (pr) {
     // 1) No assigner
@@ -35,7 +36,7 @@ if (pr) {
 
 
     // 3) Generate report
-    if (isPRMerged) {
+    if (!isPRMerged) {
         const reportList = generateReport()
         console.log('1. pr=>', pr)
         console.log('2. reportList=>', reportList)
