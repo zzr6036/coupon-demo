@@ -29,7 +29,7 @@ on:
           with:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             pullRequestOpened: |
-              This is the unit test coverage report
+              node .scripts/unit-test-coverage-report.js
         # - name: Report
         #   run: node .scripts/unit-test-coverage-report.js
 
