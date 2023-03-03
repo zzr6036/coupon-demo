@@ -30,7 +30,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const {report} = require('./script/unit-test-coverage-report.js')
-          pullRequestEdited: |
+            console.log('report=>', report)
+          pullRequestEditedComment: |
             test test test
       # - uses: actions/github-script@v5
       #   with:
