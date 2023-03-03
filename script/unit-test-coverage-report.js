@@ -21,4 +21,6 @@ function report() {
     }
 }
 
-report()
+if (require.main === module) {
+    report()
+}
