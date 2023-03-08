@@ -64,30 +64,3 @@ jobs:
               repo: context.repo.repo,
               body: reportList
             })
-      # - name: Report
-      #   run: node ./script/unit-test-coverage-report.js
-
-# jobs:
-#   Danger:
-#     runs-on: ubuntu-latest
-#     # env:
-#     #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Use Node.js 16
-#         id: action_id
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: 16
-#       # - name: Install Dependencies(Push)
-#       #   run: yarn install --frozen-lockfile
-#       # - name: Danger(Push)
-#       #   run: yarn danger ci --failOnErrors
-#       - name: auto comments
-#         uses: wow-actions/auto-comment@v1
-#         run: |
-#           node .scripts/unit-test-coverage-report.js
-#         with:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           pullRequestOpened: |
-#             This is the unit test coverage report
