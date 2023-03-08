@@ -1,7 +1,8 @@
 import { danger, markdown, warn, schedule } from 'danger'
 const { generateReport } = require('./script/report')
 // import { generateReport } from './script/report'
-import defineConfig from './vitest.config'
+// import defineConfig from './vitest.config'
+const { defineConfig } = require('./vitest.config')
 
 const pr = danger.github.pr
 const modifiedFiles = danger.git.modified_files;
