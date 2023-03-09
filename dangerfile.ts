@@ -2,7 +2,7 @@ import { danger, markdown, warn, schedule } from 'danger'
 const { generateReport } = require('./script/report')
 // import { generateReport } from './script/report'
 // import defineConfig from './vitest.config'
-const { defineConfig } = require('./vitest.config')
+// const { defineConfig } = require('./vitest.config')
 
 const pr = danger.github.pr
 const modifiedFiles = danger.git.modified_files;
@@ -35,10 +35,9 @@ if (pr) {
             }
         });
         if (hasPackageChanges && noUnitTestFiles.length) {
-            markdown('### No unit test files : \n - ' + noUnitTestFiles.join('\n-'));
+            markdown('### No unit test files : \n - ' + noUnitTestFiles.join('\n- '));
         }
     }
-    console.log('defineConfig=>', defineConfig)
 
     // 3) Generate report
     // if (!isPRMerged) {
