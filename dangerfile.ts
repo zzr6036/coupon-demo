@@ -23,7 +23,7 @@ if (pr) {
     if (!isPRMerged) {
         const hasPackageChanges = modifiedFiles.length > 0;
         const noUnitTestFiles = [];
-        const typescriptFilePattern = /.ts|.tsx/
+        const typescriptFilePattern = /.ts|.tsx|.js|.jsx/
         const ignoreFiles = [/*'dangerfile.ts'*/]
         modifiedFiles.filter(filepath => {
             const pieces = filepath.split('/');
